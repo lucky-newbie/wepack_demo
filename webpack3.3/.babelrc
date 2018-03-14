@@ -1,0 +1,13 @@
+// 该方式为使用transform-runtime方式
+// 可讲bable中的presets配置放到该文件中
+
+{
+   "presets": [
+        ["@babel/preset-env", {
+            "targets": {
+                "browsers": ["last 2 version"]
+            }
+        }]
+   ] ,
+   "plugins": ["@babel/transform-runtime"]
+}
