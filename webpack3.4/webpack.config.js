@@ -10,10 +10,8 @@ module.exports = {
             {
                 test: /\.(ts|tsx)$/,
                 use: {
-                    loader: 'ts-loader',
-                    option: {
-                        
-                    }
+                    loader: 'ts-loader'
+                    
                 }
             }
         ]
