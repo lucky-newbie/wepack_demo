@@ -1,0 +1,11 @@
+html {
+    background: red;
+}
+.box{
+    composes: bigBox from './common.css'; /*先引入别的css。否则会覆盖*/
+    height: 200px;
+    width: 200px;
+    background: black;
+    border-radius: 2px;
+    transition: transform 1s;
+}
