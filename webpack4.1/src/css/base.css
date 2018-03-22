@@ -1,0 +1,56 @@
+html {
+    /* background: red; */
+}
+.box{
+    
+    height: 200px;
+    width: 200px;
+    background: black;
+    border-radius: 2px;
+    transition: transform 1s;
+}
+
+.test {
+    width: 400px;
+    height: 400px;
+    background-color: yellowgreen;
+}
+app {
+    width: 600px;
+    height: 600px;
+    background-color:  blue;
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+    float: left;
+}
+.img1{
+    width: 400px;
+    height: 400px;
+    float: left;
+    /* background-image: url('../assets/imgs/1.png') */
+    background: url('../assets/imgs/1.png')
+}
+.img2{
+    width: 400px;
+    height: 400px;
+    float: left;
+    /* background-image: url('../assets/imgs/2.png') */
+    background: url('../assets/imgs/2.png')
+}
+.img3{
+    width: 400px;
+    height: 400px;
+    float: left;
+    /* background-image: url('../assets/imgs/3.jpg') */
+    background: url('../assets/imgs/3.jpg')
+}
+.img4{
+    width: 400px;
+    height: 400px;
+    float: left;
+    /* background-image: url('../assets/imgs/4.png') */
+    background: url('../assets/imgs/4.png')
+}
