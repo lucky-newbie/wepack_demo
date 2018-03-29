@@ -11,7 +11,7 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: 'dist/', // 通过publicPath改变应用资源相对路径
+        publicPath: '', // 通过publicPath改变应用资源相对路径
         chunkFilename: '[name].js' // 动态打包文件名字
     },
     module: {
@@ -30,19 +30,25 @@ module.exports = {
                     use: [
                         {
                             loader: 'css-loader',
-                            // options: {
+                            options: {
+                                importLoaders: 1
                             //     // minimize: true,
                                 // modules: true, // 打开css-modules  
                             //     localIdentName: '[path].[name]._[local]--[hash:base64:5]' // 指定css别名
-                            // }
+                            }
                         },
                         {
                             loader: 'postcss-loader',
                             options: {
                                 ident: 'postcss', //表明下面插件是给postcss使用
                                 plugins: [
-                                    require('autoprefixer')(),
-                                    require('postcss-cssnext')()
+                                    
+                                    require('postcss-sprites')({
+                                        spritePath: 'dist/assets/imgs/sprites', // 指定雪碧图生产位置
+                                        // retina: true //表明为高清图片，图片命名需未XX@2x.ext，如：1@2x.png
+                                    }),
+                                    // require('autoprefixer')(),
+                                    require('postcss-cssnext')(),
                                 ]
                             }
                         }
@@ -76,7 +82,33 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 102400
+                            name: '[name]-min.[ext]',
+                            limit: 1000,
+                            // publicPath: '',
+                            // outputPath: '../',
+                            // useRelativePath: true
+                        }
+                    },
+                    {
+                        loader: 'img-loader', // 图片压缩
+                        options: {
+                            pngquant: {
+                                quality: 30
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(eot|woff2|woff|ttf|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name].[hash:5].[ext]',
+                            limit: 1000,
+                            // outputPath: '/',
+                            useRelativePath: true
                         }
                     }
                 ]
