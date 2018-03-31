@@ -1,0 +1,106 @@
+html {
+    /* background: red; */
+}
+.box{
+    
+    height: 200px;
+    width: 200px;
+    background: black;
+    border-radius: 2px;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
+}
+
+.test {
+    width: 400px;
+    height: 400px;
+    background-color: yellowgreen;
+}
+app {
+    width: 600px;
+    height: 600px;
+    background-color:  blue;
+}
+.jsClass{
+    font-size: 40px;
+    background: yellow;
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+    float: left;
+}
+.img1{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background-image: url(sprite-min.png);
+    background-position: 0px 0px;
+    background-size: 256px 256px
+}
+.img2{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background-image: url(sprite-min.png);
+    background-position: -128px 0px;
+    background-size: 256px 256px
+}
+.img3{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background-image: url(sprite-min.png);
+    background-position: 0px -128px;
+    background-size: 256px 256px
+}
+.img4{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background-image: url(sprite-min.png);
+    background-position: -128px -128px;
+    background-size: 256px 256px
+}
+
+
+/*字体图标*/
+
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url(assets/fonts/fontawesome-webfont.674f5.eot?#iefix&v=4.7.0) format('embedded-opentype'),
+         url(assets/fonts/fontawesome-webfont.af7ae.woff2) format('woff2'), 
+         url(assets/fonts/fontawesome-webfont.fee66.woff) format('woff'), 
+         url(assets/fonts/fontawesome-webfont.b0687.ttf) format('truetype'), 
+         url(assets/fonts/fontawesome-webfont.912ec.svg#fontawesomeregular) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-folder:before {
+    content: "\F07B";
+}
+html{
+    font-size: 20px
+}
+
+.bigBox{
+    border: 4px solid green;
+}
+
+a {
+    color: yellow
+}

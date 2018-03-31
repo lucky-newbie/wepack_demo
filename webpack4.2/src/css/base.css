@@ -1,0 +1,84 @@
+html {
+    /* background: red; */
+}
+.box{
+    
+    height: 200px;
+    width: 200px;
+    background: black;
+    border-radius: 2px;
+    transition: transform 1s;
+}
+
+.test {
+    width: 400px;
+    height: 400px;
+    background-color: yellowgreen;
+}
+app {
+    width: 600px;
+    height: 600px;
+    background-color:  blue;
+}
+.jsClass{
+    font-size: 40px;
+    background: yellow;
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+    float: left;
+}
+.img1{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background: url('../assets/imgs/1@2x.png')
+}
+.img2{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background: url('../assets/imgs/2@2x.png')
+}
+.img3{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background: url('../assets/imgs/3@2x.png')
+}
+.img4{
+    width: 400px;
+    height: 400px;
+    float: left;
+    background: url('../assets/imgs/4@2x.png')
+}
+
+
+/*字体图标*/
+
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+         url('../assets/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), 
+         url('../assets/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), 
+         url('../assets/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), 
+         url('../assets/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-folder:before {
+    content: "\f07b";
+}
