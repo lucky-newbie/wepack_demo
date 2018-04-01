@@ -1,6 +1,9 @@
 const path = require('path');
 
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlInlinePlugin = require('html-webpack-inline-chunk-plugin');
+
 
 module.exports = {
   entry: {
@@ -40,6 +43,13 @@ module.exports = {
             // collapseWhitespace: true // 压缩空格
         }
         // chunks: [] // 如果不指定，默认会把entry中的文件都插入到html中
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: 'manifest',
+        minify: Infinity
+    }),
+    new HtmlInlinePlugin({
+        inlineChunks: ['manifest'] // 指定提前加载到html中的chunk
     })
   ]
 }
