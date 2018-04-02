@@ -19,6 +19,10 @@ module.exports = {
         publicPath: '', // 通过publicPath改变应用资源相对路径
         chunkFilename: '[name].js' // 动态打包文件名字
     },
+    // 添加webpack dev server
+    devServer: {
+
+    },
     module: {
         rules: [
             {
