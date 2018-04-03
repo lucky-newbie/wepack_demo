@@ -15,6 +15,17 @@
                  errorCallBack（该参数可省略）
                  chunkName
     注： require.ensure需依赖promise方法,如果不支持，需添加polyfill进行语法转义
+    该方式可以结合react-router动态路由，对项目进行优化，实现懒加载， 如：
+        export default {
+          path: '/test',
+          name:"test", 
+          getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../path/contaner').default);
+            }, 'test');
+          }
+        }
+        这样webpack 打包时，就会单独打出test的chunck， 路由只有在访问到/test的时候，才会加载/test路径下模块代码
 
     2）require.include
         当子模块中都依赖第三方模块时，可将第三方模块在父模块通过该方法打包
