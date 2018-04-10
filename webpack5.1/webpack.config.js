@@ -21,7 +21,7 @@ module.exports = {
     },
     // 添加webpack dev server
     devServer: {
-
+        port: 9001
     },
     module: {
         rules: [

@@ -27,5 +27,8 @@
             proxy：接口代理；
             hot： 是否模块热更新；
             openpage： 指定webpack打开的初始页面
-            lazy：webpack devserver懒模式，只有使用的时候才会会打包对应的模块,
-            overlary: 给出编译错误提示
+            lazy：webpack devserver懒模式，只有使用的时候才会会打包对应的模块, 适用于多页面应用
+            overlary: (遮罩)给出编译错误提示, 在打开的页面中显示错误信息
+
+
+            注意： 需使用webpack-dev-server2.X版本，3.X版本供webpack4.X使用
