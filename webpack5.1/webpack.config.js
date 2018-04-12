@@ -21,7 +21,23 @@ module.exports = {
     },
     // 添加webpack dev server
     devServer: {
-        port: 9001
+        port: 9001,
+        // inline: false, // 会在浏览器上看到打包状态信息
+        // historyApiFallback: true
+        historyApiFallback: {
+            rewrites:[
+                // {
+                //     from: '/pages/a', // 匹配该路径
+                //     to: '/pages/a.html' // 跳转到该路径
+                // }
+                {
+                    from: /^\/([a-zA-Z0-9]+\/?)([a-zA-Z0-9]+)/,
+                    to: function(context) {
+                        return '/' + context.match[1] +context.match[2] + '.html'
+                    }
+                }
+            ]
+        }
     },
     module: {
         rules: [
