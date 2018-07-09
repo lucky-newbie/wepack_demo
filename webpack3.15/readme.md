@@ -8,7 +8,7 @@
 2.css tree shaking
     purify css
 
-    借助plugins：purifycss-webpack，
+    借助plugins：purifycss-webpack，使用puriftcss-webpack需要安装purifycss
 
     注意：css tree shaking 与css module不能同时起作用
 
