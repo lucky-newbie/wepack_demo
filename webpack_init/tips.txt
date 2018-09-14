@@ -1,0 +1,9 @@
+1.webpack可以导出对象，也可以导出函数（env，argv）
+
+2.webpack可以打出多个对象， 采用
+  module.exports = [{配置1}, {配置2}]
+
+3.webpack-dev-server 相当于集成了express + webpack-dev-middleware的server服务，相对来说只适合纯
+前端项目，很难编写后端，与后端进行整合，而webpack-dev-middleware中间间的方式更灵活
+
+
