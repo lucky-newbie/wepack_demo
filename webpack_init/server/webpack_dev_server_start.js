@@ -1,8 +1,10 @@
 /**
  * 采用node api的方式启动 webpack-devserver
  */
- const port = 3000;
+ const port = 3001;
  const host = '127.0.0.1';
+ process.env.BABEL_ENV = 'development';
+ process.env.NODE_ENV = 'development';
 
  const path = require('path');
  const webpack = require('webpack');

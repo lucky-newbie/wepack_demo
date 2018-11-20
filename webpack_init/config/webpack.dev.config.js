@@ -27,9 +27,36 @@ module.exports = {
     },
     extensions: ['.js', 'jsx']
   },
-  // devServer: {
+  // externals: {
+  //     "react": "React",
+  //     "react-dom": "ReactDOM",
   // },
-  // devTool: 'cheap-eval-source-map',
+  externals: [
+    {
+      "react-dom": {
+        root: "ReactDOM",
+        commonjs2: "react-dom",
+        commonjs: "react-dom",
+        amd: "react-dom"
+      }
+    },
+    {
+      react: {
+        root: "React",
+        commonjs2: "react",
+        commonjs: "react",
+        amd: "react"
+      }
+    },
+    {
+      'prop-types': {
+        root: "PropTypes",
+        commonjs2: "prop-types",
+        commonjs: "prop-types",
+        amd: "prop-types"
+      }
+    }
+  ],
   module: {
     rules: [
       {
@@ -42,7 +69,9 @@ module.exports = {
               {
                 "useBuiltIns": "entry"
               }
-            ]
+            ],
+            // "react-app"
+            "@babel/preset-react"
           ]
         }
       },

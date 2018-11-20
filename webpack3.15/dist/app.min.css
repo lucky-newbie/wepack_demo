@@ -2,28 +2,6 @@ html {
   font-size: 20px;
 }
 
-:root {
-  --mainColor: yellow;
-}
-
-a {
-  color: var(--mainColor);
-}
-
-html {
-  background: red;
-}
-
-app {
-  width: 600px;
-  height: 600px;
-  background-color: blue;
-}
-
-html {
-  font-size: 20px;
-}
-
 a {
   color: yellow;
 }

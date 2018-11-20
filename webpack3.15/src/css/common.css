@@ -13,3 +13,6 @@ html{
 a {
     color: var(--mainColor)
 }
+.text{
+  color: red;
+}
