@@ -1,24 +1,16 @@
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     'index': './src/index.js'
   },
-  // devServer:  { // webpack-devserver 配置
-  //   contentBase: path.resolve(__dirname, 'dist'),
-  //   compress: true, // 进行Gzip压缩
-  //   quiet: false,
-  //   port: 3002,
-  //   publicPath: '',
-  //   hot: true,
-  //   hotOnly: false // HMR时是否刷新浏览器，true：不刷新； false：刷新
-  // },
-  devtool: 'cheap-module-source-map',
+  devtool: 'false',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash:4].js',
@@ -46,9 +38,7 @@ module.exports = {
       {
         test: /\.(css|scss|sass)$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader'
           },
@@ -74,17 +64,19 @@ module.exports = {
        }
     ]
   },
+  
   plugins: [
     new CleanWebpackPlugin([
       'dist/*.*',
     ], {
       root: path.resolve(__dirname, '../')
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css"
+    }),
     new HtmlWebpackPlugin({
       inject: 'body',
       template: path.resolve(__dirname, '../public/index.html')
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
-
 }

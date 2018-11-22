@@ -1,5 +1,5 @@
 const path = require('path');
-module.export = {
+module.exports = {
   contentBase: path.resolve(__dirname, 'dist'), // 指明当前文件位置
     compress: true, // 进行Gzip压缩
     quiet: false, //true: 不可见；false：可见； 除了初始启动信息之外的任何内容都不会被打印到控制台

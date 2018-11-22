@@ -1,10 +1,6 @@
 import './index.css';
 import icon from './1.png';
 
-const test = 123;
-console.log(test, 'test123',1)
-
-
 function createDom() {
  const dom = document.createElement('div');
  dom.innerHTML = 'hello , this is test';
@@ -15,3 +11,9 @@ function createDom() {
  document.body.appendChild(dom)
 }
 createDom()
+
+// if (module.hot) {
+//   module.hot.accept('./HRMTrigger.js', function() {
+//     console.log('hot?')
+//   });
+// }

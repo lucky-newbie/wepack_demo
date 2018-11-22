@@ -9,10 +9,9 @@
  const webpackDevServerConfig = require('../config/webpack.devServer.config');
 
  webpackDevServer.addDevServerEntrypoints(webpackConfig, webpackDevServerConfig); // 指定入口及dev配置
- 
  const compiler = webpack(webpackConfig);
  const server = new webpackDevServer(compiler, webpackDevServerConfig);
 
- server.listen('3001', 'localhost',  () => {
-  console.log('dev server listening on port 5000');
+ server.listen(4000, 'localhost',  () => {
+  console.log('dev server listening on port 4000');
  });

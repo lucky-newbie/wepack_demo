@@ -1,11 +1,14 @@
 # webpack脚手架示例
 
 ## 环境依赖
-  
+  * node > 6.0
+  * webpack > 4.X
 
 ## 命令介绍
-  npm run start       // webpack-dev-middleware方式启动开发环境
-  npm run devServer   // webpack-dev-server cli方式启动开发环境
+  * npm run dev1       // webpack-dev-middleware方式启动开发环境
+  * npm run dev2       // webpack-dev-server cli方式启动开发环境
+  * npm run build      // production 打包
+  
 
 ## 目录介绍
 ```
