@@ -6,9 +6,9 @@
 
 ## 命令介绍
   * npm run dev1       // webpack-dev-middleware方式启动开发环境
-  * npm run dev2       // webpack-dev-server cli方式启动开发环境
+  * npm run dev2       // node api方式启动开发环境
   * npm run build      // production 打包
-  
+  * npm run devServer  // webpack-dev-server cli方式启动， 此方式需要在dev中配置devserver配置
 
 ## 目录介绍
 ```
