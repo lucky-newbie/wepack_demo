@@ -2,13 +2,18 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const PurifyCSSPlugin = require('purifycss-webpack');
+const glob = require('glob'); // 多个路径使用glob-all
 
 const path = require('path');
 
 module.exports = {
   mode: 'production',
   entry: {
-    'index': './src/index.js'
+    'index': './src/index.js',
+    'another': './src/another.js',
+    'another2': './src/another2.js',
+    'min': './src/min.js'
   },
   devtool: 'false',
   output: {
@@ -40,7 +45,11 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]-[hash:4]',
+            }
           },
           // {
           //   loader: 'post-'
@@ -64,7 +73,20 @@ module.exports = {
        }
     ]
   },
-  
+  optimization: {
+    splitChunks: {
+      // chunks (chunk) {
+      //   // 出去chunk名称为test
+      //   return chunk.name !== 'test';
+      // }
+      automaticNameDelimiter: '-', // 将使用块的起源和名称生成名称(例如，vendor-入口1.js-入口2.js)
+      chunks: 'all',
+      minSize: 1000,
+      maxInitialRequests: 5,
+      maxInitialRequests: 3,
+
+    }
+  },
   plugins: [
     new CleanWebpackPlugin([
       'dist/*.*',
@@ -73,6 +95,19 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css"
+    }),
+    // 需要在miniCssExtractPlugin下方使用
+    new PurifyCSS({
+      paths: glob.sync(
+        // 绝对路径，如：src/index.js， 示例如下
+        path.resolve(__dirname, "../src/*.js")
+      ),
+      // 此处白名单可过滤css modules中localIdentName包含purify的类名，
+      // 如果不加，则css modules中样式都被tree shaking
+      // 增加此处， css tree shaking的时候会过滤css module名字总包含purify的样式，不tree shaking
+      purifyOptions: {
+        whitelist: ['*purify*'] 
+      }
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
