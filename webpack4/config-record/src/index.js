@@ -6,9 +6,10 @@ import { add } from './add.js';
 import number from  './number.js';
 
 import render from './react-test.js';
+import { add as myAdd } from 'wepack-library-demo';
 
 const A = 111;
-console.log(A);
+console.log(A, myAdd(1, 2));
 
 const image = new Image();
 image.src = img;

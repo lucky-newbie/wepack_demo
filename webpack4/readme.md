@@ -81,3 +81,11 @@
   1.webpack版本越新速度越快
   2.node版本越高，速度越快
   3.减少打包体积， babel打包时可以使用 useBuildIns减少代码体积
+
+
+## npm发包流程
+  * npm adduser, 输入用户名密码
+  * npm publish
+  * npm install
+
+  
