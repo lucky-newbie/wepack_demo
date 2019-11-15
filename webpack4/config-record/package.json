@@ -1,0 +1,50 @@
+{
+  "name": "webpack4",
+  "version": "1.0.0",
+  "description": "## 什么是webpack？   webpack是一个模块打包工具(webpack is a module bundler) ## 模块是什么？",
+  "main": "index.js",
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "start": "webpack --config ./config/webpack.dev.config.js",
+    "watch": "webpack --watch",
+    "dev": "webpack-dev-server --config ./config/webpack.dev.config.js",
+    "build": "webpack --config config/webpack.prod.config.js",
+    "server": "node ./src/server/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "autoprefixer": "^9.7.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "express": "^4.17.1",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "@babel/runtime": "^7.7.2",
+    "@babel/runtime-corejs2": "^7.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
