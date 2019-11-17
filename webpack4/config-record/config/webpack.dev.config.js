@@ -9,6 +9,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // clean-webpack-plugin 版本更新
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -37,6 +38,16 @@ module.exports = {
     chunkFilename: '[name].chunk.js', // 
     path: path.resolve(__dirname, '../dist'),
     publicPath: ''
+  },
+  /* 额外配置resolve会影响webpack打包速度 */
+  resolve: {
+    // 指定别名
+    alias: {
+      'component': path.resolve(__dirname, '../src')
+    },
+    extensions: ['.js', '.jsx'],
+    modules: [ path.resolve(__dirname, 'src'), 'node_modules' ], // 指定从哪里找文件
+    // mainFiles: ['index'], // 指定每次查找首先查找文件名
   },
   devServer: devServer,
   module: {
@@ -128,38 +139,49 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        /*
-          babel-loader 处理js文件时，仅仅是webpack与babel进行通信的桥梁， 不会把ES6的语法翻译成ES5
-        */
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {
-          plugins: ["@babel/plugin-syntax-dynamic-import"],
-          /* 
-            打包组件库时使用如下的
-            transform-runtime,不会污染全局变量
-          */
-          // "plugins": [
-          //   ["@babel/plugin-transform-runtime", {
-          //     "corejs": 2,
-          //     "helpers": true,
-          //     "regenerator": true,
-          //     "useESModules": false
-          //   }]
-          // ],
-          /* 应用代码时使用以下配置 */
-          presets: [
-            /* 仅仅把一部分ES6语法转化成ES5 */
-            ['@babel/preset-env', {
-              /* 当浏览器大于65时，则不进行语法转化 */
-              targets : {
-                chrome: '65'
-              },
-              'useBuiltIns': 'usage' /*  仅引入业务代码中用到的ES6方法的实现, 则代码中不需要使用@babel-polyfill  */
-            }],
-            '@babel/preset-react'
-          ]
-        }
+        use: [
+          {
+            /*
+              babel-loader 处理js文件时，仅仅是webpack与babel进行通信的桥梁， 不会把ES6的语法翻译成ES5
+            */
+            loader: 'babel-loader',
+            options: {
+              plugins: ["@babel/plugin-syntax-dynamic-import"],
+              /* 
+                打包组件库时使用如下的
+                transform-runtime,不会污染全局变量
+              */
+              // "plugins": [
+              //   ["@babel/plugin-transform-runtime", {
+              //     "corejs": 2,
+              //     "helpers": true,
+              //     "regenerator": true,
+              //     "useESModules": false
+              //   }]
+              // ],
+              /* 应用代码时使用以下配置 */
+              presets: [
+                /* 仅仅把一部分ES6语法转化成ES5 */
+                ['@babel/preset-env', {
+                  /* 当浏览器大于65时，则不进行语法转化 */
+                  targets : {
+                    chrome: '65'
+                  },
+                  'useBuiltIns': 'usage' /*  仅引入业务代码中用到的ES6方法的实现, 则代码中不需要使用@babel-polyfill  */
+                }],
+                '@babel/preset-react'
+              ]
+            }
+          },
+          // { /* 会影响打包速度， 正常会通过git hook进行配置eslint */
+          //   loader: 'eslint-loader',
+          //   options: {
+          //     fix: true,
+          //     cache: true
+          //   }
+          // }
+        ]
       },
       {
         test: /\.(eot|ttf|svg|woff)$/,
@@ -191,6 +213,12 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(), //  配合devserver中的hot， 实现hmr
     new OptimizeCSSAssetsPlugin(),
+    new AddAssetHtmlWebpackPlugin({
+      filepath: path.resolve(__dirname, '../dll/vendors.dll.js')
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
+    }),
   ],
   optimization: {
     // usedExports:  true,

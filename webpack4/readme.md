@@ -78,14 +78,38 @@
 
 
 ## webpack 提升打包速度方式
+  * 升级对应工具的版本（webpack、node、npm、yarn等)
+  * 在尽可能少的模块上应用loader(通过合理使用include/exclude控制loader的使用频率)
+  * plugin的使用要精准，性能较好的，尽可能少使用, 比如开发环境不需要压缩css/js，也就是说不需要使用optimize-css-assets-webpack-plugin
+  * resolve参数合理配置
+  * 使用dllplugin + dllreferenceplugin/externals
+  * 通过thread-laoder/happypack 多线程进行打包， parallel-webpack多个进程打包
+  * tree shaking
+  * 使用合适的sourcemap
+  * 使用cache
+
+
+
+
   1.webpack版本越新速度越快
   2.node版本越高，速度越快
   3.减少打包体积， babel打包时可以使用 useBuildIns减少代码体积
+  * 合理使用include/exclude/cache
 
+## webpack支持pwd打包流程
+  * 安装workbox-wepack-plugin，配置文件中进行配置
+  * 业务代码中进行判断是否支持serviceworker, 如果支持，则进行注册。支持的话，第二次打开的时候即使断网也会使用之前缓存的信息
+
+## webpack编写loader、plugin 
+  * 编写loader即为编写一个函数，函数不能为箭头函数， 因为webpack调用loader的时候会使用this.
+  
 
 ## npm发包流程
   * npm adduser, 输入用户名密码
   * npm publish
   * npm install
 
-  
+## ESLint 使用方式
+  * 安装ESLint 增加配置文件 + webpack(安装eslint eslint-loader, 在webpackdevserver中添加overlay：true即可)
+  * 编辑器安装eslint插件, 如vscode 安装插件
+  * 提交代码时配合git 进行代码强校验

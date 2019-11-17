@@ -11,11 +11,14 @@
    open: true,
    hot: true,
    hotOnly: true,
-   historyApiFallback: true, // 当找不到对应路径时，跳转到根路径
+   historyApiFallback: true, // 当在服务器上找不到对应路径时，会使用根路径地址
+   overlay: true, // 当出现编译错误的时候， 会直接在浏览器中显示出来
    proxy: {
      '/api': {
        target: 'http://localhost:3000',
-       changeOrigin: true
+       changeOrigin: true, // 有的网站会限制反爬虫，则需要增加该属性
+       secure: true, // 转发到https时使用
+       headers: {}
      }
    }
  }
