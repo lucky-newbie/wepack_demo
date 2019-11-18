@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // clean-webpack-plugin 版本更新
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
+const CopyWebpackPlugin = require('../plugins/copyright-webpack-plugin')
+
 
 module.exports = {
   mode: 'development',
@@ -48,6 +50,9 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     modules: [ path.resolve(__dirname, 'src'), 'node_modules' ], // 指定从哪里找文件
     // mainFiles: ['index'], // 指定每次查找首先查找文件名
+  },
+  resolveLoader: {
+    modules: ['node_modules', './loaders']
   },
   devServer: devServer,
   module: {
@@ -218,6 +223,9 @@ module.exports = {
     }),
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname, '../dll/vendors.manifest.json')
+    }),
+    new CopyWebpackPlugin({
+      name: 'hello'
     }),
   ],
   optimization: {

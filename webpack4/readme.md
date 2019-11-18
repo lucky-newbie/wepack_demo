@@ -102,7 +102,12 @@
 
 ## webpack编写loader、plugin 
   * 编写loader即为编写一个函数，函数不能为箭头函数， 因为webpack调用loader的时候会使用this.
-  
+  * 通过this.async()实现异步loader
+  * 通过自定义loader中进行代码增加try catch异常捕获
+  * 通过自定义loader进行国际化打包配置
+  * 自定义一个plugin： 定义一个类， 构造函数中接收options参数， 编写一个apply方法，接收compiler参数，compiler.hooks提供生命周期方法，进行处理
+
+## 模拟实现webpack打包精简版;
 
 ## npm发包流程
   * npm adduser, 输入用户名密码
